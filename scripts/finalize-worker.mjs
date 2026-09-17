@@ -4,9 +4,11 @@ import { join } from 'node:path';
 
 const config = new URL('../wrangler.toml', import.meta.url);
 const hidden = new URL('../.wrangler.toml.build-disabled', import.meta.url);
+const deployRedirect = new URL('../.wrangler/deploy/config.json', import.meta.url);
 await rm(config, { force: true });
 await writeFile(config, `name = "gregory-park-nuwara-eliya"\nmain = "dist/server/entry.mjs"\ncompatibility_date = "2026-09-17"\nworkers_dev = true\n\n[assets]\nbinding = "ASSETS"\ndirectory = "dist/client"\nnot_found_handling = "single-page-application"\n`);
 await rm(new URL('../dist/server/wrangler.json', import.meta.url), { force: true });
+await rm(deployRedirect, { force: true });
 await rm(hidden, { force: true });
 
 /** @param {string} directory */

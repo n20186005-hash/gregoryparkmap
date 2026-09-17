@@ -105,6 +105,9 @@ temp/
 *.sqlite
 *.sqlite3
 
+# Wrangler / Cloudflare cache
+.wrangler/
+
 # Webdev artifacts (checkpoint zips, migrations, etc.)
 .webdev/
 
