@@ -1,0 +1,134 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const navItems = [
+  ['හැඟීම', '#story'],
+  ['සැලසුම්', '#plan'],
+  ['ආහාර', '#food'],
+  ['සිතියම', '#map'],
+];
+
+const facts = [
+  { label: 'විවෘත වේලාව', value: '06:00 — 18:00', note: 'දිනපතා · පිටත්වීමට පෙර තහවුරු කරන්න' },
+  { label: 'නිර්දේශිත කාලය', value: 'පැය 1 — 3', note: 'ඇවිදීම, බෝට්ටු, තේ වේලාව' },
+  { label: 'ස්ථානය', value: 'Nuwara Eliya', note: 'Central Province · Sri Lanka' },
+  { label: 'ආකර්ෂණය', value: '4.2 / 5', note: 'ප්‍රසිද්ධ සංචාරක ලැයිස්තුවක පෙන්වන අගය' },
+];
+
+const nearby = [
+  { distance: 'ආසන්න', name: 'Gregory Lake', detail: 'වැව වටා උදෑසන මීදුම, නිස්කලංක ජලය සහ බෝට්ටු ගමන්.' },
+  { distance: '≈ 2 km', name: 'Victoria Park', detail: 'මල් උද්‍යානයක්, කුරුලු නිරීක්ෂණය සහ නගරයේ තවත් සීතල විවේකයක්.' },
+  { distance: 'දින භාගයක්', name: 'Tea Country', detail: 'තේ කර්මාන්තශාලා, බෑවුම් සහ මෘදු වලාකුළු අතරින් දසුන්.' },
+  { distance: 'දින සංචාරයක්', name: 'Horton Plains', detail: 'World’s End සහ Baker’s Falls සඳහා උදෑසනින් පිටත් වන්න.' },
+];
+
+const faqs = [
+  ['Gregory Park විවෘත වන්නේ කීයටද?', 'පොදු සංචාරක තොරතුරු අනුව දිනපතා 06:00 සිට 18:00 දක්වා විවෘත වේ. නිවාඩු දින හෝ ක්‍රියාකාරකම් වේලාවන් වෙනස් විය හැකි නිසා පැමිණි විට තහවුරු කරන්න.'],
+  ['නගර මධ්‍යයෙන් පැමිණෙන්නේ කෙසේද?', 'Nuwara Eliya නගර මධ්‍යයෙන් tuk-tuk හෝ කුලී රථයකින් Gregory Lake දෙසට පැමිණෙන්න. මාර්ගයෙන් පැමිණෙන්නේ නම් Peradeniya-Badulla-Chenkaladi Highway සහ XQ4G+PX6 Plus Code එක භාවිතා කරන්න.'],
+  ['ඇතුල්වීම සහ බෝට්ටුව සඳහා ගෙවීම කෙසේද?', 'උද්‍යානයේ ඇතුල්වීම සහ වැව මත ක්‍රියාකාරකම් වෙන වෙනම ගාස්තු විය හැක. සෘතු අනුව වෙනස් වන නිසා, පැරණි අන්තර්ජාල මිලක් වෙනුවට ස්ථානයේදී අදාල ගාස්තුව අසන්න.'],
+  ['වැව අසලට යාමට හොඳම වේලාව කුමක්ද?', 'උදෑසන වලාකුළු සහ මෘදු ආලෝකය ඇවිදීමට සුදුසුය. සවස අහස පැහැදිලි නම්, වැව අසල වාඩි වී තේ පානය කරන්න; වැසි ඇඳුමක් රැගෙන එන්න.'],
+];
+---
+<Layout>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Gregory Park මුල් පිටුව">
+      <img src="/logo.svg" alt="Gregory Park Guide" width="200" height="58" />
+    </a>
+    <nav aria-label="ප්‍රධාන මෙනුව">
+      {navItems.map(([label, href]) => <a href={href}>{label}</a>)}
+    </nav>
+    <a class="header-cta" href="#map">මාර්ගය බලන්න <span>↗</span></a>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-image" role="img" aria-label="Gregory Lake හි ජලය සහ හරිත තණබිම්">
+        <img src="/images/gregory-lake-park.webp" alt="Gregory Lake පසෙකින් හරිත තණබිම් සහ කුඩා බෝට්ටුවක්" />
+      </div>
+      <div class="hero-wash"></div>
+      <div class="hero-content">
+        <p class="eyebrow">NUWARA ELIYA · 1,868 M උසක නගරය</p>
+        <h1 id="hero-title">මීදුම අතරින්<br /><em>වැවට</em> පැමිණෙන්න.</h1>
+        <p class="hero-lede">Gregory Park යනු Gregory Lake අසලින් සීතල කඳුකර වාතය, පැරණි උද්‍යාන රේඛා සහ මන්දගාමී දවසක් හමුවන ස්ථානයකි.</p>
+        <div class="hero-actions">
+          <a class="button button-copper" href="#plan">ගමන සැලසුම් කරන්න <span>↓</span></a>
+          <a class="text-link light-link" href="#story">ස්ථානය දැනගන්න <span>→</span></a>
+        </div>
+      </div>
+      <div class="hero-stamp" aria-hidden="true">
+        <span>LAKE</span><strong>G</strong><span>PARK</span>
+      </div>
+      <div class="scroll-cue"><span>පහළට</span><i></i></div>
+    </section>
+
+    <section class="intro section-pad" id="story">
+      <div class="section-kicker"><span>01</span><span>ස්ථානයේ හැඟීම</span></div>
+      <div class="intro-grid">
+        <div>
+          <p class="display-copy">පැරණි <span>කඳුකර</span><br />නිවාඩුවක වගේ.</p>
+        </div>
+        <div class="intro-copy">
+          <p>මධ්‍යම ශ්‍රී ලංකාවේ තේ කඳු අතර Gregory Lake වටා දිගහැරෙන උද්‍යානය, නගරයේ වේගය මෘදු කරන කුඩා විවේකයකි. තණබිම් අසලින් සෙමින් ඇවිදින්න, ජලයේ කුඩා රැළි බලන්න, ඉන්පසු උණු තේ කෝප්පයක් සමඟ වලාකුළු ගමන් කරන හැටි බලා සිටින්න.</p>
+          <a class="text-link dark-link" href="#plan">ඔබේ හොඳම පැය 3 <span>→</span></a>
+        </div>
+      </div>
+      <div class="photo-strip">
+        <figure class="photo-card photo-tall"><img src="/images/gregory-lake-mist.webp" alt="වැව සහ මීදුම් සහිත කඳු" loading="lazy" /><figcaption>මීදුම · ජලය · නිහඬකම</figcaption></figure>
+        <figure class="photo-card photo-wide"><img src="/images/gregory-lake-garden.webp" alt="Gregory Lake අසල මල් සහිත උද්‍යානය" loading="lazy" /><figcaption>වැව දෙස බැලෙන උද්‍යාන මාර්ගය</figcaption></figure>
+        <div class="quote-card"><span class="quote-mark">“</span><p>කඳුකරයේ හුස්ම ගන්නට වඩා හොඳ තැනක් නොමැති දවසක්.</p><small>— වැව අසල මන්දගාමී ගමනක්</small></div>
+      </div>
+    </section>
+
+    <section class="facts-band" id="plan">
+      <div class="section-pad facts-inner">
+        <div class="section-kicker section-kicker-light"><span>02</span><span>ඔබ දැනගත යුතු දේ</span></div>
+        <div class="facts-grid">
+          {facts.map((fact, index) => <div class:list={["fact", { 'fact-featured': index === 0 }]}><span class="fact-label">{fact.label}</span><strong>{fact.value}</strong><span class="fact-note">{fact.note}</span></div>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="itinerary section-pad">
+      <div class="section-kicker"><span>03</span><span>දවස සෙමින් ගත කරන්න</span></div>
+      <div class="itinerary-header"><h2>වැව වටා ඇති<br /><em>හොඳම රිද්මය.</em></h2><p>මෙය checklist එකක් නොවෙයි. Gregory Park හි හොඳම මතකය, කාලය ඉක්මන් නොකරන විට පැමිණෙයි.</p></div>
+      <div class="timeline">
+        <div class="timeline-item"><span class="time">01</span><div><h3>උදෑසන ආලෝකය</h3><p>ජලය තවමත් නිශ්චල වන විට වැව අසලින් ඇවිදින්න. කැමරාවට වඩා හුස්මට ඉඩ දෙන්න.</p></div><img src="/images/gregory-lake-water.webp" alt="Gregory Lake හි නිල් ජලය" loading="lazy" /></div>
+        <div class="timeline-item"><span class="time">02</span><div><h3>කඳුකර ක්‍රියාකාරකම</h3><p>අවශ්‍ය නම් pedal boat එකක් හෝ බයිසිකලයක් ගන්න. කුඩා දරුවන් සමඟ නම් තණබිම් සහ playground එක තෝරන්න.</p></div><img src="/images/gregory-lake-hills.webp" alt="Gregory Lake පසුබිමේ හරිත කඳු" loading="lazy" /></div>
+        <div class="timeline-item"><span class="time">03</span><div><h3>තේ සමඟ අවසන් කරන්න</h3><p>වැවෙන් ආපසු යාමට පෙර උණු තේ, vegetable roti හෝ කුඩා snack එකක් රස බලන්න.</p></div><img src="/images/gregory-lake-garden.webp" alt="Gregory Lake වටා මල් උද්‍යානය" loading="lazy" /></div>
+      </div>
+    </section>
+
+    <section class="food-section section-pad" id="food">
+      <div class="food-image"><img src="/images/gregory-lake-hills.webp" alt="තේ කඳු සහ වැව" loading="lazy" /></div>
+      <div class="food-content"><div class="section-kicker"><span>04</span><span>周邊美食 · ආහාර</span></div><h2>උණු කෝප්පයක්,<br /><em>සිසිල් වාතයක්.</em></h2><p>වැව අසල snack stalls සහ නගරයේ cafés දෙකම ගමනේ හොඳ කොටසකි. ශ්‍රී ලාංකික රසයට vegetable roti, kottu roti, string hoppers සමඟ dhal curry, සහ පොල් කිරිවලින් කළ watalappan සොයා බලන්න.</p><div class="food-list"><span>VEGETABLE ROTI</span><span>KOTTU ROTI</span><span>CEYLON TEA</span></div></div>
+    </section>
+
+    <section class="details section-pad">
+      <div class="section-kicker"><span>05</span><span>ගමනේ විස්තර</span></div>
+      <div class="detail-grid">
+        <article class="detail-card"><span class="card-index">A</span><h3>විස්තරාත්මක ප්‍රවාහනය</h3><p>නගර මධ්‍යයෙන් tuk-tuk හෝ කුලී රථය පහසුම ක්‍රමයයි. බස් රථයෙන් පැමිණෙන්නේ නම් Nuwara Eliya නගරයට පැමිණ අවසන් කොටසට tuk-tuk ගන්න. Kandy හෝ Ella සිට පැමිණෙන අයට මාර්ගයේ කඳුකර වංගු සහ වැසි සඳහා වැඩි කාලයක් තබාගන්න.</p><a href="#map" class="text-link dark-link">සිතියමේ මාර්ගය <span>→</span></a></article>
+        <article class="detail-card"><span class="card-index">B</span><h3>ටිකට් / ගාස්තු</h3><p>උද්‍යානයේ ප්‍රවේශය, බෝට්ටු, pony ride සහ වෙනත් ක්‍රියාකාරකම් එකිනෙකට වෙනස් ගාස්තු විය හැක. නිල මිල ලැයිස්තුවක් නොමැති විට මෙහි නිශ්චිත මුදලක් පොරොන්දු නොකරමු—ස්ථානයේදී අදාල ගාස්තුව අසන්න සහ මුදල් සමඟ යන්න.</p><span class="soft-note">මිල ගණන් වෙනස් විය හැක</span></article>
+        <article class="detail-card"><span class="card-index">C</span><h3>වාහන නැවැත්වීම</h3><p>වැවට යාබද මාර්ගවල සීමිත public parking හෝ drop-off ඉඩ තිබිය හැක. peak weekend වේලාවන්හිදී පාර අයිනේ නොනවත්වා, staff පෙන්වන ස්ථානය භාවිතා කරන්න. tuk-tuk එකෙන් පැමිණීම සාමාන්‍යයෙන් පහසුය.</p><span class="soft-note">තදබද දිනවල ඉක්මනින් එන්න</span></article>
+        <article class="detail-card"><span class="card-index">D</span><h3>හොඳම කාලය / නැවතුම් කාලය</h3><p>උදෑසන 06:00–09:00 අතර හෝ සවස 16:00 පසු මෘදු ආලෝකය ලැබේ. අහස පැහැදිලි නම් sunset මතකයේ රැඳෙයි. සරල ඇවිදීමට පැයක්, සම්පූර්ණ අත්දැකීමට පැය 1–3ක් වෙන් කරන්න.</p><span class="soft-note">වැසි ඇඳුමක් අමතක නොකරන්න</span></article>
+      </div>
+    </section>
+
+    <section class="nearby-section section-pad">
+      <div class="section-kicker section-kicker-light"><span>06</span><span>周邊景點 · අසලින්</span></div>
+      <div class="nearby-header"><h2>වැවෙන් පසු<br /><em>කොහෙද යන්නේ?</em></h2><p>Nuwara Eliya එක තනි ස්ථානයක් නොවෙයි—තේ කඳු, මල් උද්‍යාන සහ දිය ඇලි එකිනෙක සම්බන්ධ කරන මන්දගාමී landscape එකකි.</p></div>
+      <div class="nearby-grid">{nearby.map((place) => <article class="nearby-card"><span>{place.distance}</span><h3>{place.name}</h3><p>{place.detail}</p><i>↗</i></article>)}</div>
+    </section>
+
+    <section class="map-section section-pad" id="map">
+      <div class="map-copy"><div class="section-kicker"><span>07</span><span>එන්න · පැමිණෙන්න</span></div><h2>වැවට යන<br /><em>මාර්ගය මෙතැනින්.</em></h2><p class="address">XQ4G+PX6<br />Peradeniya-Badulla-Chenkaladi Hwy<br />Nuwara Eliya 22200, Sri Lanka</p><a class="button button-dark" href="https://www.google.com/maps/search/?api=1&query=XQ4G%2BPX6%2C%20Peradeniya-Badulla-Chenkaladi%20Hwy%2C%20Nuwara%20Eliya%2022200%20Sri%20Lanka" target="_blank" rel="noreferrer">Google Maps විවෘත කරන්න <span>↗</span></a></div>
+      <div class="map-frame"><iframe title="Gregory Park Google Map" src="https://www.google.com/maps?q=Gregory+Park%2C+Nuwara+Eliya%2C+Sri+Lanka&output=embed&hl=si-LK&gl=lk" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe><div class="map-pin">G</div></div>
+    </section>
+
+    <section class="faq-section section-pad" id="faq">
+      <div class="section-kicker"><span>08</span><span>FAQ · නිතර අසන ප්‍රශ්න</span></div>
+      <div class="faq-grid"><div><h2>පිටත්වීමට පෙර<br /><em>දැනගන්න.</em></h2><p>කාලගුණය සහ ක්‍රියාකාරකම් වෙනස් විය හැකි නිසා, මෙය ඔබේ දවස සකස් කර ගැනීමට practical guide එකක් ලෙස භාවිතා කරන්න.</p></div><div class="accordion-list">{faqs.map(([question, answer], index) => <details open={index === 0}><summary><span>0{index + 1}</span>{question}<b>＋</b></summary><p>{answer}</p></details>)}</div></div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="footer-brand"><img src="/logo.svg" alt="Gregory Park Guide" width="200" height="58" /><p>තේ කඳු අතරින් වැව දක්වා — සෙමින් යන්න.</p></div><div class="footer-links"><a href="#top">ඉහළට ↑</a><a href="#faq">FAQ</a><a href="#map">මාර්ගය</a></div><div class="footer-note"><p>මෙය නිල Gregory Park වෙබ් අඩවියක් නොවේ. වේලාවන්, ගාස්තු, parking සහ ක්‍රියාකාරකම් වෙනස් විය හැක.</p><p>ඡායාරූප: <a href="https://commons.wikimedia.org/wiki/Category:Lake_Gregory_(Sri_Lanka)" target="_blank" rel="noreferrer">Wikimedia Commons</a> · 2026</p></div></footer>
+</Layout>

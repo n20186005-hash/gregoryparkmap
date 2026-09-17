@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 72" role="img" aria-labelledby="title desc">
+  <title id="title">Gregory Park mark</title>
+  <desc id="desc">A copper mountain above a blue lake ring and a tea leaf</desc>
+  <g transform="translate(4 5)">
+    <circle cx="31" cy="31" r="28" fill="#173f3b" stroke="#d69b59" stroke-width="2"/>
+    <path d="M8 42c9-6 16-5 23-1 8-5 14-5 24 1" fill="none" stroke="#8fc4bd" stroke-linecap="round" stroke-width="3"/>
+    <path d="M12 31 24 18l7 8 9-13 14 18" fill="none" stroke="#e4b477" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+    <path d="M34 48c5-8 11-10 17-9-1 7-6 12-14 12" fill="#9bbf78" stroke="#173f3b" stroke-width="1.5"/>
+    <path d="M37 49c4-3 7-5 11-7" fill="none" stroke="#173f3b" stroke-width="1.2"/>
+  </g>
+  <text x="74" y="32" fill="#173f3b" font-family="Georgia, 'Times New Roman', serif" font-size="21" font-weight="700" letter-spacing="1.4">GREGORY</text>
+  <text x="75" y="53" fill="#9d6539" font-family="Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="3.5">PARK GUIDE</text>
+</svg>

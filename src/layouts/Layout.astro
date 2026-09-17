@@ -1,0 +1,112 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Gregory Park | Gregory Lake, Nuwara Eliya',
+  description = '斯里兰卡努沃勒埃利耶 Gregory Park 湖畔慢游指南：路线、费用、停车、周边美食与景点。',
+} = Astro.props;
+
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).toString() : undefined;
+const imageUrl = Astro.site ? new URL('/images/gregory-lake-park.webp', Astro.site).toString() : '/images/gregory-lake-park.webp';
+
+const placeSchema = {
+  '@context': 'https://schema.org',
+  '@type': ['TouristAttraction', 'LocalBusiness'],
+  name: 'Gregory Park',
+  alternateName: 'Gregory Park Nuwara Eliya',
+  description,
+  ...(canonical ? { url: canonical } : {}),
+  image: imageUrl,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'XQ4G+PX6, Peradeniya-Badulla-Chenkaladi Hwy',
+    addressLocality: 'Nuwara Eliya',
+    postalCode: '22200',
+    addressCountry: 'LK',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 6.9567875,
+    longitude: 80.777390625,
+  },
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+    opens: '06:00',
+    closes: '18:00',
+  },
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.2',
+    bestRating: '5',
+  },
+  priceRange: 'LKR',
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Gregory Park 什么时候开放？',
+      acceptedAnswer: { '@type': 'Answer', text: '公开旅行资料显示，Gregory Park 通常在每天 06:00–18:00 开放；出发前请在现场确认。' },
+    },
+    {
+      '@type': 'Question',
+      name: '从努沃勒埃利耶市区怎么去 Gregory Park？',
+      acceptedAnswer: { '@type': 'Answer', text: '从市中心搭乘 tuk-tuk 或出租车前往 Gregory Lake 湖畔即可；自驾沿 Peradeniya-Badulla-Chenkaladi Highway 抵达。' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Gregory Park 需要门票吗？',
+      acceptedAnswer: { '@type': 'Answer', text: '公园入口和湖上活动的收费可能分开，且会随季节调整；不要把网上旧价格当作承诺，现场询价最稳妥。' },
+    },
+    {
+      '@type': 'Question',
+      name: '在公园里适合停留多久？',
+      acceptedAnswer: { '@type': 'Answer', text: '只散步可安排 1 小时左右；加上划船、拍照、茶点和湖畔慢坐，建议预留 1–3 小时。' },
+    },
+  ],
+};
+---
+<!doctype html>
+<html lang="si">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#173f3b" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" sizes="16x16" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" sizes="32x32" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.svg" />
+    {canonical && <link rel="canonical" href={canonical} />}
+    {canonical && <meta property="og:url" content={canonical} />}
+    <meta property="og:type" content="place" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:locale" content="si_LK" />
+    <title>{title}</title>
+    <script type="application/ld+json" set:html={JSON.stringify(placeSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HXM22WWPKP" />
+    <script is:inline>
+      {`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-HXM22WWPKP');
+      `}
+    </script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
