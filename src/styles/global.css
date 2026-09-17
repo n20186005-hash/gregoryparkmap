@@ -159,8 +159,82 @@ details p { margin: 0 38px 23px 58px; color: #627670; font-size: 14px; }
 .footer-note p { margin-bottom: 8px; }
 .footer-note a { color: var(--copper-light); text-decoration: underline; }
 
+.h1-entity { display: block; margin-bottom: 20px; font-family: var(--sans); font-size: clamp(12px, 1.5vw, 16px); font-weight: 700; letter-spacing: .26em; text-transform: uppercase; color: var(--copper-light); }
+.h1-entity i { font-style: normal; opacity: .72; }
+.h1-headline { display: block; }
+
+.breadcrumb { padding: 17px clamp(20px, 8vw, 128px); background: var(--paper); border-bottom: 1px solid var(--line); }
+.breadcrumb ol { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 0; padding: 0; list-style: none; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #6d827c; }
+.breadcrumb li:not(:last-child)::after { content: '\2192'; margin-left: 10px; color: var(--copper); }
+.breadcrumb li:last-child { color: var(--forest); font-weight: 700; }
+
+.guide-section { background: var(--mist); }
+.guide-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(260px, .9fr); gap: clamp(34px, 6vw, 90px); align-items: start; }
+.guide-block { margin-bottom: 52px; }
+.guide-block:last-child { margin-bottom: 0; }
+.guide-block h2 { margin-bottom: 18px; font-family: var(--serif); font-weight: 400; font-size: clamp(29px, 3.2vw, 44px); line-height: 1.1; letter-spacing: -.04em; color: var(--forest); }
+.guide-block p { max-width: 640px; color: #54706a; }
+.guide-block strong { color: var(--forest); }
+.guide-lede { font-size: 17px; line-height: 1.9; }
+.guide-block a { color: var(--forest); text-decoration: underline; text-decoration-color: var(--copper); text-underline-offset: 3px; }
+.guide-nearby { margin: 26px 0 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+.guide-nearby li { display: grid; grid-template-columns: 250px 1fr; gap: 18px; padding: 13px 0; border-bottom: 1px solid var(--line); }
+.guide-nearby strong { color: var(--forest); font-size: 14px; }
+.guide-nearby span { color: #5d756f; font-size: 13px; line-height: 1.7; }
+.guide-aside { position: sticky; top: 26px; }
+.guide-card { padding: 30px; background: var(--forest); color: var(--paper); }
+.guide-card-title { margin-bottom: 18px; font-family: var(--serif); font-size: 25px; font-weight: 400; color: var(--paper); }
+.guide-facts { margin: 0; padding: 0; list-style: none; border-top: 1px solid rgba(255,255,255,.24); }
+.guide-facts li { display: grid; grid-template-columns: 104px 1fr; gap: 14px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.18); }
+.guide-facts span { padding-top: 3px; color: var(--copper-light); font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.guide-facts strong { color: rgba(255,255,255,.88); font-size: 13px; font-weight: 400; line-height: 1.65; }
+.guide-card-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; margin-top: 24px; }
+.guide-card-actions .text-link { color: var(--paper); }
+
+.fact-source { margin-top: auto; padding-top: 8px; font-size: 10.5px; line-height: 1.6; color: rgba(255,255,255,.55); }
+.fact-source a { color: var(--copper-light); text-decoration: underline; }
+
+.official-link { margin: 22px 0 0; font-size: 12.5px; line-height: 1.8; color: #61736e; }
+.official-link a { color: var(--forest); text-decoration: underline; text-decoration-color: var(--copper); text-underline-offset: 3px; }
+
+.faq-en { margin-top: 70px; padding-top: 40px; border-top: 1px solid var(--line); }
+.faq-en h3 { margin-bottom: 6px; font-family: var(--serif); font-weight: 400; font-size: 27px; color: var(--forest); }
+.faq-en .accordion-list { border-top: 0; }
+
+.reviews-section { background: var(--paper); }
+.reviews-grid { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(34px, 6vw, 96px); align-items: start; }
+.reviews-panel { padding: 34px; background: var(--forest); color: var(--paper); }
+.reviews-score { display: flex; align-items: baseline; gap: 12px; margin: 0; font-family: var(--serif); color: var(--copper-light); }
+.reviews-score strong { font-size: clamp(56px, 7vw, 84px); font-weight: 400; line-height: 1; }
+.reviews-score span { font-size: 19px; }
+.reviews-stars { margin: 12px 0 6px; color: var(--copper-light); font-size: 15px; letter-spacing: .26em; }
+.reviews-count { margin: 0; font-size: 14px; color: rgba(255,255,255,.84); }
+.reviews-count strong { color: #fff; }
+.reviews-count-en { margin: 7px 0 24px; font-size: 12px; line-height: 1.7; color: rgba(255,255,255,.6); }
+.reviews-attribution { margin: 18px 0 0; font-size: 11px; line-height: 1.8; color: rgba(255,255,255,.62); }
+.reviews-copy h2 { color: var(--forest); font-size: clamp(34px, 4.4vw, 58px); }
+.reviews-list { margin: 30px 0 20px; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+.reviews-list li { display: grid; grid-template-columns: 168px 1fr; gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--line); }
+.reviews-list b { color: var(--forest); font-size: 13px; }
+.reviews-list span { color: #5d756f; font-size: 13px; line-height: 1.7; }
+.reviews-note { max-width: 620px; font-size: 11.5px; line-height: 1.8; color: #6f837e; }
+
+.sources-section { background: var(--forest); color: var(--paper); }
+.sources-grid { display: grid; grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr); gap: clamp(34px, 6vw, 100px); }
+.sources-grid h2 { color: var(--paper); font-size: clamp(36px, 4.4vw, 60px); margin-bottom: 22px; }
+.sources-grid > div > p { max-width: 360px; color: rgba(255,255,255,.63); font-size: 13.5px; line-height: 1.85; }
+.source-list { margin: 0; padding: 0; list-style: none; border-top: 1px solid rgba(255,255,255,.24); }
+.source-list li { padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,.18); }
+.source-list h3 { margin-bottom: 7px; font-family: var(--serif); font-weight: 400; font-size: 19px; color: var(--paper); }
+.source-list p { margin-bottom: 9px; color: rgba(255,255,255,.62); font-size: 12.5px; line-height: 1.8; }
+.source-list a { color: var(--copper-light); font-size: 12px; font-weight: 700; letter-spacing: .05em; text-decoration: underline; text-underline-offset: 3px; }
+.source-list a:hover { color: #fff; }
+
 @media (max-width: 900px) {
   .site-header nav { display: none; }
+  .guide-grid, .reviews-grid, .sources-grid { grid-template-columns: 1fr; }
+  .guide-aside { position: static; }
+  .guide-nearby li { grid-template-columns: 1fr; gap: 5px; }
   .hero-content { padding-top: 175px; }
   .intro-grid, .food-section, .map-section, .faq-grid { grid-template-columns: 1fr; }
   .intro-copy { margin-top: 28px; }
@@ -204,5 +278,175 @@ details p { margin: 0 38px 23px 58px; color: #627670; font-size: 14px; }
   .map-frame { box-shadow: 8px 8px 0 var(--copper-light); }
   summary { font-size: 17px; }
   details p { margin-left: 0; }
+  .breadcrumb { padding: 14px 20px; }
+  .guide-card, .reviews-panel { padding: 26px 22px; }
+  .guide-facts li { grid-template-columns: 1fr; gap: 4px; }
+  .reviews-list li { grid-template-columns: 1fr; gap: 4px; }
+  .faq-en { margin-top: 48px; padding-top: 30px; }
   .site-footer { grid-template-columns: 1fr; gap: 28px; padding-top: 50px; }
+}
+
+/* ===== Weather (live, Server Component) ===== */
+.weather-section { background: var(--forest-deep); color: #fff; }
+.weather-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; flex-wrap: wrap; }
+.weather-head h2 { color: #fff; font-size: clamp(40px, 5vw, 72px); margin: 0; }
+.weather-intro { max-width: 560px; color: rgba(255,255,255,.7); font-size: 14px; line-height: 1.85; }
+.weather-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(30px, 6vw, 80px); margin-top: 60px; }
+.weather-now { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14); padding: 30px; border-radius: 3px; }
+.weather-temp { display: flex; align-items: baseline; gap: 14px; }
+.wt-num { font-family: var(--serif); font-size: clamp(56px, 8vw, 92px); line-height: 1; }
+.wt-feels { color: var(--copper-light); font-size: 14px; }
+.weather-cond { display: flex; align-items: center; gap: 14px; margin: 18px 0 22px; }
+.wt-icon { font-size: 34px; }
+.wt-cond { font-size: 18px; }
+.weather-meta { list-style: none; margin: 0 0 20px; padding: 0; display: grid; gap: 10px; }
+.weather-meta li { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,.12); padding-bottom: 8px; font-size: 14px; }
+.weather-meta span { color: rgba(255,255,255,.6); }
+.weather-advice { padding: 12px 14px; border-radius: 3px; font-size: 14px; font-weight: 700; line-height: 1.5; }
+.weather-advice.ok { background: rgba(143,196,189,.18); color: var(--lake); }
+.weather-advice.mid { background: rgba(228,180,119,.18); color: var(--copper-light); }
+.weather-advice.high { background: rgba(182,111,66,.32); color: #ffd9b8; }
+.weather-updated { color: rgba(255,255,255,.5); font-size: 12px; margin: 14px 0 0; }
+.weather-forecast h3 { font-family: var(--serif); font-weight: 400; font-size: 24px; color: #fff; margin: 0 0 18px; }
+.forecast-list { list-style: none; margin: 0; padding: 0; }
+.forecast-list li { display: grid; grid-template-columns: 92px 40px 1fr auto auto; align-items: center; gap: 12px; padding: 11px 0; border-bottom: 1px solid rgba(255,255,255,.12); font-size: 14px; }
+.fc-day { color: var(--copper-light); font-weight: 700; }
+.fc-day i { font-style: normal; color: rgba(255,255,255,.5); font-weight: 400; margin-left: 4px; }
+.fc-icon { font-size: 22px; }
+.fc-cond { color: rgba(255,255,255,.8); }
+.fc-temp { color: #fff; font-variant-numeric: tabular-nums; }
+.fc-rain { color: var(--lake); font-variant-numeric: tabular-nums; }
+.weather-foot, .weather-offline { margin-top: 20px; font-size: 12.5px; color: rgba(255,255,255,.6); line-height: 1.8; }
+.weather-foot a, .weather-offline a { color: var(--copper-light); }
+.weather-offline { background: rgba(255,255,255,.06); padding: 24px; border-radius: 3px; }
+.weather-offline p { margin: 0 0 10px; }
+
+/* Advice engine (rules render only when triggered) */
+.advice-banner { margin-top: 44px; background: rgba(150, 76, 44,.42); border: 1px solid #e4b477; padding: 20px 22px; border-radius: 3px; }
+.advice-banner h4 { margin: 0 0 10px; color: #ffd9b8; font-size: 14px; letter-spacing: .04em; }
+.advice-banner ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.advice-banner li { display: flex; gap: 10px; align-items: flex-start; color: #fff; font-size: 14px; font-weight: 700; line-height: 1.6; }
+.advice-banner .ab-icon { flex: 0 0 auto; font-size: 18px; }
+.advice-banner i { display: block; font-style: normal; font-weight: 400; color: rgba(255,255,255,.62); font-size: 12.5px; margin-top: 2px; }
+.advice-banner-foot { margin: 14px 0 0; font-size: 12.5px; color: rgba(255,255,255,.72); }
+.advice-banner-foot a { color: #ffd9b8; text-decoration: underline; }
+.advice-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,.14); margin-top: 22px; }
+.advice-block { background: rgba(255,255,255,.05); padding: 22px 24px; }
+.advice-block h4 { margin: 0 0 12px; color: var(--copper-light); font-size: 13px; font-weight: 700; letter-spacing: .05em; }
+.advice-block ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.advice-block li { color: rgba(255,255,255,.9); font-size: 13.5px; line-height: 1.65; }
+.advice-block i { display: block; font-style: normal; color: rgba(255,255,255,.55); font-size: 12px; margin-top: 2px; }
+.advice-allclear { margin-top: 22px; background: rgba(143,196,189,.14); color: var(--lake); padding: 13px 16px; border-radius: 3px; font-size: 13px; line-height: 1.7; }
+.advice-allclear a { color: var(--lake); text-decoration: underline; }
+
+/* ===== Seasonal strategy table ===== */
+.season-section { background: var(--forest); color: var(--paper); }
+.season-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; flex-wrap: wrap; }
+.season-head h2 { color: var(--paper); font-size: clamp(40px, 5vw, 72px); margin: 0; }
+.season-head p { max-width: 520px; color: rgba(255,255,255,.66); font-size: 14px; line-height: 1.85; }
+.season-table { margin-top: 56px; border: 1px solid rgba(255,255,255,.18); }
+.season-row { display: grid; grid-template-columns: 1.1fr 1.5fr 1.5fr 1.2fr 1.5fr; }
+.season-row > span { padding: 18px; border-bottom: 1px solid rgba(255,255,255,.14); border-right: 1px solid rgba(255,255,255,.14); font-size: 13px; line-height: 1.7; color: rgba(255,255,255,.82); }
+.season-row > span:last-child { border-right: 0; }
+.season-head-row { background: rgba(255,255,255,.06); }
+.season-head-row > span { font-weight: 700; letter-spacing: .06em; text-transform: uppercase; font-size: 11px; color: var(--copper-light); border-bottom: 1px solid rgba(255,255,255,.22); }
+.season-period { font-weight: 700; color: var(--paper) !important; font-size: 14px !important; }
+.season-foot { margin-top: 22px; font-size: 12px; color: rgba(255,255,255,.6); line-height: 1.8; }
+.season-foot a { color: var(--copper-light); }
+
+/* ===== Transport ===== */
+.transport-section { background: var(--paper); }
+.transport-head h2 { color: var(--forest); font-size: clamp(40px, 5vw, 72px); margin: 0 0 14px; }
+.transport-head p { max-width: 620px; color: #59716c; font-size: 14px; line-height: 1.8; }
+.transport-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); margin-top: 56px; }
+.transport-card { background: var(--paper); padding: 30px; }
+.transport-card h3 { font-family: var(--serif); font-weight: 400; font-size: 22px; color: var(--forest); margin: 0 0 12px; line-height: 1.2; }
+.transport-summary { color: #60746f; font-size: 14px; margin-bottom: 16px; }
+.transport-steps { margin: 0 0 18px; padding-left: 20px; color: #5d756f; font-size: 13.5px; line-height: 1.8; }
+.transport-steps li { margin-bottom: 8px; }
+.transport-facts { display: flex; flex-direction: column; gap: 6px; border-top: 1px solid var(--line); padding-top: 14px; font-size: 13px; color: #55706b; line-height: 1.6; }
+.transport-facts b { color: var(--copper); margin-right: 6px; }
+.transport-note { margin: 14px 0 0; font-size: 12.5px; color: var(--copper); }
+.local-transit { margin-top: 48px; background: #f0ede4; padding: 28px; }
+.local-transit h3 { font-family: var(--serif); font-weight: 400; color: var(--forest); font-size: 22px; margin: 0 0 12px; }
+.local-transit ul { margin: 0; padding-left: 20px; color: #5d756f; font-size: 13.5px; line-height: 1.9; }
+.local-transit li { margin-bottom: 8px; }
+.local-transit strong { color: var(--forest); }
+
+/* ===== Routes ===== */
+.routes-section { background: #e7ede6; }
+.routes-head h2 { color: var(--forest); font-size: clamp(40px, 5vw, 72px); margin: 0 0 12px; }
+.routes-head p { max-width: 520px; color: #55706b; font-size: 14px; }
+.audience-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); margin-top: 54px; }
+.route-card { background: #e7ede6; padding: 30px; }
+.route-audience { display: block; font-family: var(--serif); font-size: 24px; font-weight: 400; color: var(--forest); }
+.route-tag { color: var(--copper); font-size: 12px; letter-spacing: .08em; margin: 6px 0 14px; }
+.route-meta { color: #55706b; font-size: 13px; margin-bottom: 16px; }
+.route-meta b { color: var(--forest); }
+.route-card h4 { font-size: 13px; text-transform: uppercase; letter-spacing: .1em; color: var(--copper); margin: 18px 0 8px; }
+.route-card ul { margin: 0; padding-left: 18px; color: #5d756f; font-size: 13px; line-height: 1.8; }
+.route-cautions { color: #6f5b4f; }
+.general-routes { margin-top: 48px; }
+.general-routes h3 { font-family: var(--serif); font-weight: 400; color: var(--forest); font-size: 26px; margin: 0 0 18px; }
+.general-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); }
+.general-card { background: #e7ede6; padding: 26px; }
+.general-card h4 { font-family: var(--serif); font-weight: 400; color: var(--forest); font-size: 20px; margin: 0 0 6px; }
+.general-dur { color: var(--copper); font-size: 12px; font-weight: 700; }
+.general-card ol { margin: 14px 0 0; padding-left: 18px; color: #5d756f; font-size: 13px; line-height: 1.8; }
+
+/* ===== Facilities ===== */
+.facility-section { background: var(--mist); }
+.facility-head h2 { color: var(--forest); font-size: clamp(40px, 5vw, 72px); margin: 0 0 14px; }
+.facility-head p { max-width: 600px; color: #54706a; font-size: 14px; line-height: 1.8; }
+.facility-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); margin-top: 54px; }
+.facility-card { background: var(--mist); padding: 28px; }
+.facility-icon { font-size: 30px; }
+.facility-card h3 { font-family: var(--serif); font-weight: 400; color: var(--forest); font-size: 21px; margin: 12px 0 10px; }
+.facility-card p { color: #5d756f; font-size: 13.5px; line-height: 1.75; margin: 0; }
+.facility-tip { margin-top: 12px !important; color: var(--copper) !important; font-size: 12px !important; font-weight: 700; }
+
+/* ===== Science & responsibility ===== */
+.resp-section { background: var(--forest); color: var(--paper); }
+.resp-head h2 { color: var(--paper); font-size: clamp(40px, 5vw, 72px); margin: 0; }
+.resp-cols { display: grid; grid-template-columns: 1.2fr .8fr; gap: clamp(34px, 6vw, 90px); margin-top: 54px; align-items: start; }
+.resp-science h3, .resp-list h3 { font-family: var(--serif); font-weight: 400; color: var(--paper); font-size: 23px; margin: 0 0 12px; }
+.resp-science p { color: rgba(255,255,255,.78); font-size: 14px; line-height: 1.85; margin: 0 0 16px; max-width: 620px; }
+.resp-implication { background: rgba(255,255,255,.08); padding: 14px 16px; border-left: 3px solid var(--copper-light); border-radius: 2px; color: #fff !important; }
+.resp-source { font-size: 12px; color: rgba(255,255,255,.55) !important; }
+.resp-source a { color: var(--copper-light); }
+.resp-list ul { list-style: none; margin: 0; padding: 0; }
+.resp-list li { padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,.16); }
+.resp-list li:first-child { padding-top: 0; }
+.resp-list strong { display: block; color: var(--copper-light); font-size: 14px; margin-bottom: 6px; }
+.resp-list span { color: rgba(255,255,255,.78); font-size: 13px; line-height: 1.7; }
+
+/* ===== History expansion (inside guide section) ===== */
+.history-extra { margin-top: 34px; border-top: 1px solid var(--line); padding-top: 26px; }
+.history-timeline { list-style: none; margin: 0 0 30px; padding: 0; }
+.history-timeline li { display: grid; grid-template-columns: 84px 1fr; gap: 18px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.history-timeline .hy { font-family: var(--serif); font-size: 20px; color: var(--copper); }
+.history-timeline h4 { font-family: var(--serif); font-weight: 400; font-size: 18px; color: var(--forest); margin: 0 0 4px; }
+.history-timeline p { color: #5d756f; font-size: 13.5px; line-height: 1.7; margin: 0; }
+.legend-box { background: rgba(23,63,59,.05); padding: 22px; border-radius: 3px; }
+.legend-box h3 { font-family: var(--serif); font-weight: 400; color: var(--forest); font-size: 21px; margin: 0 0 14px; }
+.legend-note { margin-bottom: 16px; }
+.legend-note:last-child { margin-bottom: 0; }
+.legend-note h4 { font-size: 14px; color: var(--copper); margin: 0 0 6px; }
+.legend-note p { color: #5d756f; font-size: 13.5px; line-height: 1.75; margin: 0; }
+
+@media (max-width: 900px) {
+  .weather-head, .season-head, .transport-head, .routes-head, .facility-head { display: block; }
+  .weather-grid { grid-template-columns: 1fr; }
+  .advice-grid { grid-template-columns: 1fr; }
+  .transport-grid, .audience-grid, .general-grid, .facility-grid { grid-template-columns: 1fr; }
+  .season-row { grid-template-columns: 1fr; }
+  .season-row > span { border-right: 0; }
+  .season-head-row { display: none; }
+  .season-row > span[data-label]::before { content: attr(data-label) ': '; color: var(--copper-light); font-weight: 700; }
+  .forecast-list li { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; }
+  .fc-day { flex: 0 0 64px; }
+  .fc-icon { flex: 0 0 auto; }
+  .fc-cond { flex: 1 1 auto; }
+  .fc-temp, .fc-rain { flex: 0 0 auto; margin-left: auto; }
+  .resp-cols { grid-template-columns: 1fr; }
 }

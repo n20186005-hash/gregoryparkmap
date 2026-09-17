@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="si">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#173f3b" />
+    <meta name="robots" content="noindex" />
+    <title>Offline · Gregory Park (Nuwara Eliya)</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+    <style>
+      :root {
+        --forest: #173f3b;
+        --paper: #f6f4ed;
+        --copper: #e4b477;
+        --lake: #8fc4bd;
+      }
+      * { box-sizing: border-box; }
+      body {
+        min-height: 100vh;
+        margin: 0;
+        display: grid;
+        place-items: center;
+        padding: 32px;
+        background: var(--forest);
+        color: var(--paper);
+        font-family: Arial, 'Noto Sans Sinhala', sans-serif;
+        line-height: 1.8;
+      }
+      main { max-width: 520px; }
+      span.stamp {
+        display: grid;
+        place-items: center;
+        width: 58px;
+        height: 58px;
+        margin-bottom: 26px;
+        border: 1px solid var(--copper);
+        border-radius: 50%;
+        color: var(--copper);
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: 28px;
+      }
+      h1 {
+        margin: 0 0 16px;
+        font-family: Georgia, 'Times New Roman', serif;
+        font-weight: 400;
+        font-size: clamp(32px, 7vw, 46px);
+        line-height: 1.05;
+        letter-spacing: -0.04em;
+      }
+      h1 em { color: var(--copper); font-style: italic; }
+      p { margin: 0 0 12px; color: rgba(255, 255, 255, 0.76); font-size: 15px; }
+      a.button {
+        display: inline-flex;
+        margin-top: 20px;
+        padding: 13px 20px;
+        background: var(--copper);
+        color: var(--forest);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-decoration: none;
+      }
+      small { display: block; margin-top: 26px; color: rgba(255, 255, 255, 0.5); font-size: 11px; }
+      small a { color: var(--lake); }
+    </style>
+  </head>
+  <body>
+    <main>
+      <span class="stamp">G</span>
+      <h1>ඔබ දැන් <em>offline</em> මාදිලියේ.</h1>
+      <p>දැනට අන්තර්ජාල සම්බන්ධතාවයක් නොමැති නිසා Gregory Park පිටුව සම්පූර්ණයෙන් පෙන්විය නොහැක.</p>
+      <p>You are offline. Reconnect to load the Gregory Park (Nuwara Eliya) visitor guide, the map and the Google Maps rating.</p>
+      <a class="button" href="/">නැවත උත්සාහ කරන්න · Retry ↗</a>
+      <small>
+        Cached pages stay available offline. Rating and reviews are synced from Google Maps user reviews;
+        copyright belongs to the original authors and Google Maps.
+      </small>
+    </main>
+  </body>
+</html>

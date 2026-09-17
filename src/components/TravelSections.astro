@@ -1,0 +1,138 @@
+---
+import {
+  transportModes,
+  localTransit,
+  seasonalRows,
+  audienceRoutes,
+  recommendedRoutes,
+  monthlyNormals,
+  officialLinks,
+} from '../data/visitor-guide';
+---
+
+<!-- ============ SEASONAL STRATEGY ============ -->
+<section class="season-section section-pad" id="seasons" lang="en" aria-labelledby="seasons-title">
+  <div class="section-kicker"><span>04</span><span>Seasonal strategy · සෘතු</span></div>
+  <div class="season-head">
+    <h2 id="seasons-title">When to visit<br /><em>climate, water &amp; wildlife</em></h2>
+    <p>
+      Built from the Sri Lanka Department of Meteorology’s 30-year climate normals (1991–2020) for Nuwara
+      Eliya, this table pairs the weather with what it means for the lake, the birds and your plans. Highland
+      weather changes fast, so treat it as a planning frame rather than a forecast.
+    </p>
+  </div>
+
+  <div class="season-table" role="table" aria-label="Seasonal strategy for Gregory Park">
+    <div class="season-row season-head-row" role="row">
+      <span role="columnheader">Period</span>
+      <span role="columnheader">Weather</span>
+      <span role="columnheader">Lake &amp; water</span>
+      <span role="columnheader">Wildlife</span>
+      <span role="columnheader">Visitor strategy</span>
+    </div>
+    {
+      seasonalRows.map((r) => (
+        <div class="season-row" role="row">
+          <span role="cell" class="season-period">{r.period}</span>
+          <span role="cell" data-label="Weather">{r.weather}</span>
+          <span role="cell" data-label="Lake & water">{r.water}</span>
+          <span role="cell" data-label="Wildlife">{r.wildlife}</span>
+          <span role="cell" data-label="Strategy">{r.strategy}</span>
+        </div>
+      ))
+    }
+  </div>
+
+  <p class="season-foot">
+    Monthly norms (°C / mm):{' '}
+    {monthlyNormals
+      .map((n) => `${n.m} ${n.minC}–${n.maxC}° · ${n.rainMm}mm`)
+      .join('  ·  ')}. Source:{' '}
+    <a href={officialLinks.meteo.href} target="_blank" rel="noopener noreferrer">{officialLinks.meteo.label}</a>.
+  </p>
+</section>
+
+<!-- ============ HOW TO GET THERE ============ -->
+<section class="transport-section section-pad" id="transport" lang="en" aria-labelledby="transport-title">
+  <div class="section-kicker"><span>05</span><span>Getting there · පැමිණීම</span></div>
+  <div class="transport-head">
+    <h2 id="transport-title">How to reach Gregory Park<br /><em>from the airport, by rail, bus &amp; taxi</em></h2>
+    <p>
+      There is no railway station or direct bus at Bandaranaike International Airport (CMB), so every route
+      passes through Colombo first. From Nuwara Eliya town the park is a 5–10 minute tuk-tuk ride. Pick the
+      balance of time, cost and comfort that suits your group.
+    </p>
+  </div>
+
+  <div class="transport-grid">
+    {
+      transportModes.map((t) => (
+        <article class="transport-card">
+          <h3>{t.mode}</h3>
+          <p class="transport-summary">{t.summary}</p>
+          <ol class="transport-steps">
+            {t.steps.map((s) => (
+              <li>{s}</li>
+            ))}
+          </ol>
+          <div class="transport-facts">
+            <span><b>Time</b> {t.time}</span>
+            <span><b>Cost</b> {t.cost}</span>
+          </div>
+          {t.note && <p class="transport-note">{t.note}</p>}
+        </article>
+      ))
+    }
+  </div>
+
+  <div class="local-transit">
+    <h3>Final local legs</h3>
+    <ul>
+      {
+        localTransit.map((l) => (
+          <li><strong>{l.label}</strong> — {l.text}</li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<!-- ============ TAILORED & GENERAL ROUTES ============ -->
+<section class="routes-section section-pad" id="routes" lang="en" aria-labelledby="routes-title">
+  <div class="section-kicker"><span>06</span><span>Routes &amp; itineraries · මාර්ග</span></div>
+  <div class="routes-head">
+    <h2 id="routes-title">Routes for every traveller<br /><em>tailored and general</em></h2>
+    <p>Three paced plans by who is travelling, then two general templates — half-day and full-day.</p>
+  </div>
+
+  <div class="audience-grid">
+    {
+      audienceRoutes.map((r) => (
+        <article class="route-card">
+          <span class="route-audience">{r.audience}</span>
+          <p class="route-tag">{r.tagline}</p>
+          <p class="route-meta"><b>{r.duration}</b> · {r.window}</p>
+          <h4>Plan</h4>
+          <ul>{r.steps.map((s) => <li>{s}</li>)}</ul>
+          <h4>Keep in mind</h4>
+          <ul class="route-cautions">{r.cautions.map((c) => <li>{c}</li>)}</ul>
+        </article>
+      ))
+    }
+  </div>
+
+  <div class="general-routes">
+    <h3>Half-day &amp; full-day templates</h3>
+    <div class="general-grid">
+      {
+        recommendedRoutes.map((g) => (
+          <article class="general-card">
+            <h4>{g.title}</h4>
+            <span class="general-dur">{g.duration}</span>
+            <ol>{g.steps.map((s) => <li>{s}</li>)}</ol>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

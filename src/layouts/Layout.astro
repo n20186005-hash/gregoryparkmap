@@ -1,101 +1,168 @@
 ---
 import '../styles/global.css';
+import { attraction, faqs, faqsEn, meta, siteName, siteUrl } from '../data/attraction';
 
 interface Props {
   title?: string;
   description?: string;
 }
 
-const {
-  title = 'Gregory Park | Gregory Lake, Nuwara Eliya',
-  description = '斯里兰卡努沃勒埃利耶 Gregory Park 湖畔慢游指南：路线、费用、停车、周边美食与景点。',
-} = Astro.props;
+const { title = meta.title, description = meta.description } = Astro.props;
 
-const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).toString() : undefined;
-const imageUrl = Astro.site ? new URL('/images/gregory-lake-park.webp', Astro.site).toString() : '/images/gregory-lake-park.webp';
+const base = Astro.site ?? new URL(siteUrl);
+const canonical = new URL(Astro.url.pathname, base).toString();
+const siteBase = new URL('/', base).toString().replace(/\/$/, '');
+const imageUrl = new URL(attraction.heroImage, base).toString();
 
-const placeSchema = {
+const attractionId = `${siteBase}/#attraction`;
+const websiteId = `${siteBase}/#website`;
+const breadcrumbId = `${siteBase}/#breadcrumb`;
+const faqPageId = `${siteBase}/#faq`;
+
+const postalAddress = {
+  '@type': 'PostalAddress',
+  streetAddress: attraction.streetAddress,
+  addressLocality: attraction.city,
+  addressRegion: attraction.region,
+  postalCode: attraction.postalCode,
+  addressCountry: attraction.countryCode,
+};
+
+const attractionSchema = {
   '@context': 'https://schema.org',
-  '@type': ['TouristAttraction', 'LocalBusiness'],
-  name: 'Gregory Park',
-  alternateName: 'Gregory Park Nuwara Eliya',
-  description,
-  ...(canonical ? { url: canonical } : {}),
-  image: imageUrl,
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: 'XQ4G+PX6, Peradeniya-Badulla-Chenkaladi Hwy',
-    addressLocality: 'Nuwara Eliya',
-    postalCode: '22200',
-    addressCountry: 'LK',
-  },
+  '@type': ['TouristAttraction', 'Park'],
+  '@id': attractionId,
+  name: attraction.fullName,
+  alternateName: [
+    ...new Set([
+      attraction.shortName,
+      `${attraction.city} ${attraction.fullName}`,
+      ...attraction.aliases,
+    ]),
+  ],
+  description: meta.schemaDescription,
+  url: canonical,
+  image: attraction.schemaImages.map((file) => new URL(file, base).toString()),
+  isAccessibleForFree: false,
+  address: postalAddress,
   geo: {
     '@type': 'GeoCoordinates',
-    latitude: 6.9567875,
-    longitude: 80.777390625,
+    latitude: attraction.latitude,
+    longitude: attraction.longitude,
   },
+  hasMap: attraction.mapsShareUrl,
+  sameAs: [attraction.mapsShareUrl, attraction.govtTourismUrl],
   openingHoursSpecification: {
     '@type': 'OpeningHoursSpecification',
     dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
     opens: '06:00',
     closes: '18:00',
   },
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.2',
-    bestRating: '5',
-  },
-  priceRange: 'LKR',
+  touristType: ['Families', 'Couples', 'Nature lovers'],
+  publicAccess: true,
+  amenityFeature: [
+    { '@type': 'LocationFeatureSpecification', name: 'Public toilets', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Parking', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Food and drink vendors', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Lawn and picnic areas', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Pedal boat and water activities', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Children’s play area', value: true },
+  ],
 };
 
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  '@id': breadcrumbId,
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: `${attraction.fullName} (${attraction.city})`, item: canonical },
+    { '@type': 'ListItem', position: 2, name: attraction.city, item: `${siteBase}/#location` },
+    { '@type': 'ListItem', position: 3, name: attraction.region, item: `${siteBase}/#location` },
+    { '@type': 'ListItem', position: 4, name: attraction.country, item: `${siteBase}/#location` },
+  ],
+};
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': websiteId,
+  url: `${siteBase}/`,
+  name: `${siteName} — ${attraction.fullName} (${attraction.city})`,
+  description: meta.schemaDescription,
+  inLanguage: ['si-LK', 'en'],
+  about: { '@id': attractionId },
+};
+
+/**
+ * FAQ markup mirrors the FAQ text that is actually visible on the page (Sinhala + English).
+ * Rating and reviews are intentionally NOT part of the structured data.
+ */
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  mainEntity: [
-    {
-      '@type': 'Question',
-      name: 'Gregory Park 什么时候开放？',
-      acceptedAnswer: { '@type': 'Answer', text: '公开旅行资料显示，Gregory Park 通常在每天 06:00–18:00 开放；出发前请在现场确认。' },
-    },
-    {
-      '@type': 'Question',
-      name: '从努沃勒埃利耶市区怎么去 Gregory Park？',
-      acceptedAnswer: { '@type': 'Answer', text: '从市中心搭乘 tuk-tuk 或出租车前往 Gregory Lake 湖畔即可；自驾沿 Peradeniya-Badulla-Chenkaladi Highway 抵达。' },
-    },
-    {
-      '@type': 'Question',
-      name: 'Gregory Park 需要门票吗？',
-      acceptedAnswer: { '@type': 'Answer', text: '公园入口和湖上活动的收费可能分开，且会随季节调整；不要把网上旧价格当作承诺，现场询价最稳妥。' },
-    },
-    {
-      '@type': 'Question',
-      name: '在公园里适合停留多久？',
-      acceptedAnswer: { '@type': 'Answer', text: '只散步可安排 1 小时左右；加上划船、拍照、茶点和湖畔慢坐，建议预留 1–3 小时。' },
-    },
-  ],
+  '@id': faqPageId,
+  inLanguage: ['si-LK', 'en'],
+  mainEntity: [...faqs, ...faqsEn].map((entry) => ({
+    '@type': 'Question',
+    name: entry.q,
+    acceptedAnswer: { '@type': 'Answer', text: entry.a },
+  })),
 };
 ---
+
 <!doctype html>
 <html lang="si">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="theme-color" content="#173f3b" />
-    <meta name="description" content={description} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" type="image/svg+xml" sizes="16x16" href="/favicon.svg" />
-    <link rel="icon" type="image/svg+xml" sizes="32x32" href="/favicon.svg" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.svg" />
-    {canonical && <link rel="canonical" href={canonical} />}
-    {canonical && <meta property="og:url" content={canonical} />}
-    <meta property="og:type" content="place" />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:image" content={imageUrl} />
-    <meta property="og:locale" content="si_LK" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
-    <script type="application/ld+json" set:html={JSON.stringify(placeSchema)} />
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <link rel="canonical" href={canonical} />
+    <meta name="author" content={siteName} />
+    <meta name="theme-color" content="#173f3b" />
+    <meta name="color-scheme" content="light" />
+
+    <!-- Geographic entity signals -->
+    <meta name="geo.position" content={`${attraction.latitude};${attraction.longitude}`} />
+    <meta name="geo.placename" content={`${attraction.city}, ${attraction.region}, ${attraction.country}`} />
+    <meta name="geo.region" content={attraction.countryCode} />
+    <meta name="ICBM" content={`${attraction.latitude}, ${attraction.longitude}`} />
+
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="application-name" content={siteName} />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content={attraction.fullName} />
+
+    <!-- Icons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+
+    <!-- Open Graph / social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:title" content={meta.ogTitle} />
+    <meta property="og:description" content={meta.ogDescription} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:alt" content={meta.ogImageAlt} />
+    <meta property="og:locale" content="si_LK" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={meta.ogTitle} />
+    <meta name="twitter:description" content={meta.ogDescription} />
+    <meta name="twitter:image" content={imageUrl} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(attractionSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-HXM22WWPKP" />
     <script is:inline>
       {`
@@ -104,6 +171,19 @@ const faqSchema = {
         gtag('js', new Date());
         gtag('config', 'G-HXM22WWPKP');
       `}
+    </script>
+    <script>
+      const registerServiceWorker = () => {
+        if (!('serviceWorker' in navigator)) return;
+        navigator.serviceWorker.register('/sw.js').catch(() => {
+          /* offline support is progressive enhancement only */
+        });
+      };
+
+      if (import.meta.env.PROD) {
+        if (document.readyState === 'complete') registerServiceWorker();
+        else window.addEventListener('load', registerServiceWorker);
+      }
     </script>
   </head>
   <body>

@@ -1,0 +1,75 @@
+---
+import {
+  facilities,
+  lakeScience,
+  waterQuality,
+  responsibilityPoints,
+  officialLinks,
+} from '../data/visitor-guide';
+---
+
+<!-- ============ VISITOR SERVICES ============ -->
+<section class="facility-section section-pad" id="facilities" lang="en" aria-labelledby="facilities-title">
+  <div class="section-kicker"><span>11</span><span>Visitor services · පහසුකම්</span></div>
+  <div class="facility-head">
+    <h2 id="facilities-title">Around the park<br /><em>what you’ll find nearby</em></h2>
+    <p>
+      A type-neutral overview of the services around Gregory Park — written for planning, not as
+      recommendations of any one business. Availability and quality change with season and demand, so
+      confirm on the ground.
+    </p>
+  </div>
+
+  <div class="facility-grid">
+    {
+      facilities.map((f) => (
+        <article class="facility-card">
+          <span class="facility-icon" aria-hidden="true">{f.icon}</span>
+          <h3>{f.label}</h3>
+          <p>{f.detail}</p>
+          {f.tip && <p class="facility-tip">{f.tip}</p>}
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<!-- ============ SCIENCE & RESPONSIBILITY ============ -->
+<section class="resp-section section-pad" id="responsibility" lang="en" aria-labelledby="resp-title">
+  <div class="section-kicker"><span>12</span><span>Science &amp; responsibility · වගකීම</span></div>
+  <div class="resp-head">
+    <h2 id="resp-title">The lake, the birds<br /><em>and our part in it</em></h2>
+  </div>
+
+  <div class="resp-cols">
+    <div class="resp-science">
+      <h3>What the lake is</h3>
+      {lakeScience.map((p) => <p>{p}</p>)}
+
+      <h3>Lake water quality — a 2026 note</h3>
+      <p>{waterQuality.note}</p>
+      <p class="resp-implication">{waterQuality.implication}</p>
+      <p class="resp-source">
+        Reported via Sri Lankan news (Aug 2026); primary figures attributed to the Central Environmental
+        Authority. For the official position see the{' '}
+        <a href={officialLinks.environment.href} target="_blank" rel="noopener noreferrer">
+          Ministry of Environment
+        </a>.
+      </p>
+    </div>
+
+    <div class="resp-list">
+      <h3>Visitor responsibilities</h3>
+      <ul>
+        {
+          responsibilityPoints.map((r) => (
+            <li>
+              <strong>{r.title}</strong>
+              <span>{r.text}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gregoryparkmap.com/sitemap-index.xml

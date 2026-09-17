@@ -1,0 +1,242 @@
+---
+import { getWeather, wmo } from '../lib/weather';
+import { buildAdvice } from '../lib/weather-advice';
+
+const report = await getWeather();
+const now = report.now;
+const advice = buildAdvice(report);
+
+// CDN / browser caching of the rendered module. No provider name is set here.
+if (Astro.response?.headers) {
+  try {
+    Astro.response.headers.set(
+      'Cache-Control',
+      'public, max-age=900, s-maxage=1800, stale-while-revalidate=3600',
+    );
+  } catch {
+    /* static prerender ignores headers */
+  }
+}
+
+const today = report.days[0];
+const rainChance = Math.max(today && today.precipProb >= 0 ? today.precipProb : -1, report.rainNext12h);
+const uvNow =
+  now && now.isDay && typeof now.uv === 'number'
+    ? Math.round(now.uv)
+    : today?.uvMax != null
+      ? today.uvMax
+      : null;
+
+function uvLabel(v: number): string {
+  if (v < 3) return 'අඩු · Low';
+  if (v < 6) return 'මධ්‍යම · Moderate';
+  if (v < 8) return 'ඉහළ · High';
+  return 'ඉතා ඉහළ · Very high';
+}
+
+const current = now ? (wmo[now.code] ?? wmo[3]) : null;
+const updated = new Intl.DateTimeFormat('en-GB', {
+  hour: '2-digit',
+  minute: '2-digit',
+  day: '2-digit',
+  month: 'short',
+  timeZone: 'Asia/Colombo',
+}).format(new Date(report.fetchedAt));
+
+function weekday(iso: string): string {
+  try {
+    return new Intl.DateTimeFormat('si-LK', { weekday: 'short', timeZone: 'Asia/Colombo' }).format(new Date(iso));
+  } catch {
+    return '';
+  }
+}
+const dayNum = (iso: string) => iso.slice(8, 10);
+---
+
+<section class="weather-section section-pad" id="weather" aria-labelledby="weather-title">
+  <div class="section-kicker"><span>02</span><span>කාලගුණය · Live weather</span></div>
+  <div class="weather-head">
+    <h2 id="weather-title">වැව අසල දේශගුණය<br /><em>දැන් සහ ඊළඟ දින</em></h2>
+    <p class="weather-intro">
+      Nuwara Eliya කඳුකර කාලගුණය වේගයෙන් වෙනස් වේ. මෙම අනාවැකිය උද්‍යානයට ආසන්න උස මට්ටමේ (≈ 1,868 m)
+      සාමාන්‍ය තත්ත්වය මත පදනම් වේ — සැලසුම් සකස් කිරීමට පමණි.
+    </p>
+  </div>
+
+  {
+    now && advice.risks.length > 0 && (
+      <div class="advice-banner" role="alert">
+        <h4>⚠️ කාලගුණ අවදානම් · Weather risks</h4>
+        <ul>
+          {advice.risks.map((r) => (
+            <li>
+              <span class="ab-icon">{r.icon}</span>
+              <span>
+                {r.si}
+                <i>{r.en}</i>
+              </span>
+            </li>
+          ))}
+        </ul>
+        <p class="advice-banner-foot">
+          අවදානම් ඇති විට සැලසුම් මෘදු කරන්න — නිල නිවේදන සඳහා
+          <a href="https://www.meteo.gov.lk/" target="_blank" rel="noopener noreferrer">කාලගුණ විද්‍යා දෙපාර්තමේන්තුව</a>
+          බලන්න.
+        </p>
+      </div>
+    )
+  }
+
+  {
+    now ? (
+      <div class="weather-grid">
+        <div class="weather-now">
+          <div class="weather-temp">
+            <span class="wt-num">{now.tempC}°</span>
+            <span class="wt-feels">Feels like {now.feelsC}°C</span>
+          </div>
+          <div class="weather-cond">
+            <span class="wt-icon">{current?.icon}</span>
+            <span class="wt-cond">
+              {current?.si} · {current?.en}
+            </span>
+          </div>
+          <ul class="weather-meta">
+            {rainChance >= 0 && (
+              <li>
+                <span>වැසි අවකාශය · Rain chance</span>
+                <strong>{rainChance}%</strong>
+              </li>
+            )}
+            {uvNow != null && (
+              <li>
+                <span>UV</span>
+                <strong>
+                  {uvNow} · {uvLabel(uvNow)}
+                </strong>
+              </li>
+            )}
+            <li>
+              <span>සුළං · Wind</span>
+              <strong>
+                {now.windKmh} km/h
+                {now.gustKmh > now.windKmh + 10 ? `, gusts ${now.gustKmh}` : ''}
+              </strong>
+            </li>
+            <li>
+              <span>ආර්ද්‍රතාව · Humidity</span>
+              <strong>{now.humidity}%</strong>
+            </li>
+            {now.precipMm > 0 && (
+              <li>
+                <span>වැසි · Rain now</span>
+                <strong>{now.precipMm} mm</strong>
+              </li>
+            )}
+          </ul>
+          <p class="weather-updated">
+            As of {now.localTime} (Asia/Colombo) · updated {updated}
+          </p>
+        </div>
+
+        <div class="weather-forecast">
+          <h3>ඊළඟ දින 7</h3>
+          <ul class="forecast-list">
+            {report.days.map((d) => {
+              const w = wmo[d.code] ?? wmo[3];
+              return (
+                <li>
+                  <span class="fc-day">
+                    {weekday(d.date)} <i>{dayNum(d.date)}</i>
+                  </span>
+                  <span class="fc-icon">{w.icon}</span>
+                  <span class="fc-cond">{w.si}</span>
+                  <span class="fc-temp">{d.minC}° / {d.maxC}°</span>
+                  <span class="fc-rain">{d.precipProb >= 0 ? `${d.precipProb}%` : '—'}</span>
+                </li>
+              );
+            })}
+          </ul>
+          <p class="weather-foot">
+            දිගුකාලීන සාමාන්‍ය සහ සෘතු උපදෙස් සඳහා <a href="#seasons">සෘතු මාර්ගගත කිරීම</a> බලන්න.
+          </p>
+        </div>
+      </div>
+    ) : (
+      <div class="weather-offline">
+        <p>
+          සජීවී දේශගුණ දත්ත මේ මොහොතේ ලබාගත නොහැක.
+          {
+            report.typical && (
+              <>
+                {' '}
+                {report.typical.month} සඳහා 30-වසර ප්‍රමාණය අනුව සාමාන්‍ය උෂ්ණතාව {report.typical.minC}–{report.typical.maxC}°C සහ
+                වර්ෂාපතනය ~{report.typical.rainMm} mm පමණ වේ — වසන්ත කාලයේදී වුවද උණුසුම් ඇඳුම් සහ වැසි ඇඳුමක් රැගෙන යන්න.
+              </>
+            )
+          }
+        </p>
+        <p>
+          For the long-term climate picture and a seasonal strategy, see{' '}
+          <a href="#seasons">the seasonal guide below</a>.
+        </p>
+      </div>
+    )
+  }
+
+  {
+    now && (
+      <div class="advice-grid">
+        {advice.wear.length > 0 && (
+          <div class="advice-block">
+            <h4>👕 ඇඳුම් · What to wear</h4>
+            <ul>
+              {advice.wear.map((a) => (
+                <li>
+                  {a.si}
+                  <i>{a.en}</i>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+        {advice.activity.length > 0 && (
+          <div class="advice-block">
+            <h4>🚣 ක්‍රියාකාරකම් · What to do</h4>
+            <ul>
+              {advice.activity.map((a) => (
+                <li>
+                  {a.si}
+                  <i>{a.en}</i>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+        {advice.carry.length > 0 && (
+          <div class="advice-block">
+            <h4>🎒 රැගෙන යන්න · What to bring</h4>
+            <ul>
+              {advice.carry.map((a) => (
+                <li>
+                  {a.si}
+                  <i>{a.en}</i>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    )
+  }
+
+  {
+    now && advice.risks.length === 0 && (
+      <p class="advice-allclear">
+        ✅ අද අනාවැකියේ දැඩි කාලගුණ අවදානම් (ගිගිරුම් / දැඩි වැසි / තද සුළං / මීදුම) නොපෙනේ. නිල නිවේදන සඳහා{' '}
+        <a href="https://www.meteo.gov.lk/" target="_blank" rel="noopener noreferrer">කාලගුණ විද්‍යා දෙපාර්තමේන්තුව</a> බලන්න.
+        {' '}No severe-weather flags (thunder / heavy rain / strong wind / fog) in today’s forecast — official advisories: meteo.gov.lk.
+      </p>
+    )
+  }
+</section>

@@ -7,6 +7,10 @@ dist/
 build/
 *.dist
 
+# Astro generated types/cache and transient wrangler config used by the check/build cycle
+.astro/
+.wrangler.toml.build-disabled
+
 # Environment variables
 .env
 .env.local
@@ -107,6 +111,17 @@ temp/
 
 # Wrangler / Cloudflare cache
 .wrangler/
+
+# Generated deploy config (written by scripts/finalize-worker.mjs before `wrangler deploy`)
+wrangler.toml
+.dev.vars
+.wrangler.toml.build-disabled
+worker-env.toml
+
+# Vite/Astro temp
+.vite/
+.eslintcache
+.stylelintcache
 
 # Webdev artifacts (checkpoint zips, migrations, etc.)
 .webdev/
