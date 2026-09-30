@@ -17,7 +17,13 @@ export const attraction = {
   /** {{ATTRACTION_SHORT_NAME}} — the name the domain gregoryparkmap.com maps to. */
   shortName: 'Gregory Park',
   /** Other spellings visitors search for; used for alternateName / on-page binding. */
-  aliases: ['Gregory Park Nuwara Eliya', 'Nuwara Eliya Gregory Park', 'Gregory Lake Park'],
+  aliases: [
+    'Gregory Park Nuwara Eliya',
+    'Nuwara Eliya Gregory Park',
+    'Gregory Lake Park',
+    'Gegari Park',
+    'Gegari Park Nuwara Eliya',
+  ],
   /** {{CITY_NAME}} */
   city: 'Nuwara Eliya',
   /** {{STATE_PROVINCE}} */
@@ -63,8 +69,8 @@ export const rating = {
   /** Latest values published on the Google Maps listing (September 2026 snapshot). */
   value: 4.5,
   best: 5,
-  reviewCount: 16447,
-  reviewCountLabel: '16,447',
+  reviewCount: 16493,
+  reviewCountLabel: '16,493',
   starsLabel: '★★★★★ (4.5 / 5)',
   syncedAtZh: '2026 年 9 月',
   /** Small print shown directly under the rating (Chinese, as specified by the publisher). */
@@ -79,10 +85,10 @@ export const rating = {
 };
 
 export const meta = {
-  title: `${attraction.fullName} (${attraction.city}) - Visitor Guide, Map & Location`,
-  description: `Discover ${attraction.fullName} in ${attraction.city}, ${attraction.region}, ${attraction.country}: location map, opening details, nearby ${attraction.nearbyLandmark1}, ${attraction.nearbyLandmark2}, and travel tips.`,
-  ogTitle: `${attraction.fullName} - ${attraction.city} Travel Guide`,
-  ogDescription: `Independent visitor guide to ${attraction.fullName} in ${attraction.city}, ${attraction.region}, ${attraction.country}.`,
+  title: `${attraction.fullName} Nuwara Eliya: Map, Entry Fee & Boat Rides`,
+  description: `Plan your visit to ${attraction.fullName} (Gregory Lake) in ${attraction.city}, ${attraction.region}: location map, ${attraction.openingHours} opening hours, entry & activity fees, boat and helicopter rides, and nearby ${attraction.nearbyLandmark2}.`,
+  ogTitle: `${attraction.fullName} Nuwara Eliya — Map, Entry Fee & Boat Rides Guide`,
+  ogDescription: `Independent visitor guide to ${attraction.fullName} (Gregory Lake) in ${attraction.city}: location map, opening hours, activities and nearby sights.`,
   ogImageAlt: `${attraction.fullName} in ${attraction.city}, ${attraction.country}`,
   schemaDescription: `Comprehensive visitor guide to ${attraction.fullName} in ${attraction.city}, ${attraction.region}, ${attraction.country}.`,
 };
@@ -168,5 +174,21 @@ export const faqsEn = [
   {
     q: 'Can I swim or drink the lake water?',
     a: 'No. Reported 2026 findings put the lake well above local water-quality guidelines (phosphate, nitrogen, biochemical oxygen demand), so do not drink or swim in it and keep children and pets away from the unguarded edge. See the science & responsibility section.',
+  },
+  {
+    q: 'Is there a contact phone number for Gregory Park?',
+    a: 'The park does not publish a single central phone line. For official town and visitor information, contact the Nuwara Eliya Municipal Council or the Sri Lanka Tourism Development Authority (links in our Sources section). On site, staff at the entrance and ticket counter can answer day-to-day questions.',
+  },
+  {
+    q: 'Are there helicopter or air rides at Gregory Lake?',
+    a: 'Helicopter and other air-ride experiences over Gregory Lake are offered by private operators at certain times and are priced separately from park entry. Availability and price are set by the operator, so ask at the lake or book through a local tour provider rather than assuming a fixed tariff.',
+  },
+  {
+    q: 'What is the difference between Gregory Park and Gregory Lake?',
+    a: 'They are the same place seen two ways: “Gregory Park” is the public garden and lakeshore, while “Lake Gregory” (or Gregory Reservoir) is the water itself. The reservoir was created in 1873 and the park grew around its shore, so the names are used interchangeably by visitors and in old guidebooks.',
+  },
+  {
+    q: 'What else is there to visit in Nuwara Eliya near Gregory Park?',
+    a: 'Within a short tuk-tuk ride are Victoria Park (flower gardens and birds), Lake Gregory itself, Hakgala Botanical Garden, Pedro tea estates and factories, Lover’s Leap waterfall and Moon Plains. Horton Plains National Park (World’s End, Baker’s Falls) is a half-day trip — see our nearby-attractions list for distances and tips.',
   },
 ];
