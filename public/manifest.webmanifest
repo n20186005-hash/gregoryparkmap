@@ -23,7 +23,7 @@
     {
       "name": "Map & directions",
       "short_name": "Map",
-      "description": "Location, Plus Code and the Google Maps embed",
+      "description": "Place information and an external Google Maps link",
       "url": "/#map",
       "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
     },

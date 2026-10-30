@@ -1,0 +1,6 @@
+Gregory Park Map — image record, 29 October 2026
+lake-illustration.svg: original geometric SVG illustration created for this guide.
+lake-social.png: raster conversion of that same illustration, 1200 x 750 pixels.
+License: CC0 1.0, https://creativecommons.org/publicdomain/zero/1.0/
+The artwork is symbolic: it is not a site photograph, current facility depiction or map.
+Five legacy WebP photographs were removed from the current source and delivery: their exact original records, subject identity and applicable permissions were not established. No claim of infringement or comprehensive clearance of subject rights is made.

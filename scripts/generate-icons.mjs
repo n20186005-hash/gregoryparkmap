@@ -30,6 +30,7 @@ const clamp01 = (value) => Math.min(1, Math.max(0, value));
 const distance = (x, y, cx, cy) => Math.hypot(x - cx, y - cy);
 
 /** Rounded-square background coverage. */
+/** @param {number} x @param {number} y @param {number} radius */
 function background(x, y, radius) {
   const half = 0.5;
   const dx = Math.abs(x - half) - (half - radius);
@@ -41,6 +42,7 @@ function background(x, y, radius) {
 }
 
 /** Ring with a gap in the upper right plus the crossbar of the letter G. */
+/** @param {number} x @param {number} y @param {number} scale */
 function glyph(x, y, scale) {
   const cx = 0.5;
   const cy = 0.5;
@@ -70,6 +72,7 @@ function glyph(x, y, scale) {
 }
 
 /** Lake disc behind the ring, for a touch of hill-country colour. */
+/** @param {number} x @param {number} y */
 function lake(x, y) {
   const d = distance(x, y, 0.5, 0.5);
   return clamp01((0.372 - d) / 0.0025) * 0.22;
@@ -127,6 +130,7 @@ function toPng(data, width, height) {
     data.copy(raw, y * (width * 4 + 1) + 1, y * width * 4, (y + 1) * width * 4);
   }
 
+  /** @param {string} type @param {Buffer} body */
   const chunk = (type, body) => {
     const length = Buffer.alloc(4);
     length.writeUInt32BE(body.length, 0);
