@@ -3,4 +3,4 @@ lake-illustration.svg: original geometric SVG illustration created for this guid
 lake-social.png: raster conversion of that same illustration, 1200 x 750 pixels.
 License: CC0 1.0, https://creativecommons.org/publicdomain/zero/1.0/
 The artwork is symbolic: it is not a site photograph, current facility depiction or map.
-Five legacy WebP photographs were removed from the current source and delivery: their exact original records, subject identity and applicable permissions were not established. No claim of infringement or comprehensive clearance of subject rights is made.
+Five legacy WebP photographs (gregory-lake-park, mist, garden, water and hills) were restored from the site's September 2026 Git history. Their original records and photographers are not established; they are legacy site images, not newly sourced photographs.

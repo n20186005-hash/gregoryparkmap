@@ -56,12 +56,12 @@ export const attraction = {
   /** {{NEARBY_LANDMARK_1}} / {{NEARBY_LANDMARK_2}} */
   nearbyLandmark1: "Lake Gregory",
   nearbyLandmark2: "Victoria Park",
-  heroImage: "/images/lake-illustration.svg",
+  heroImage: "/images/gregory-lake-park.webp",
   /** Absolute-URL image list for the JSON-LD `image` node. */
   schemaImages: [
-    "/images/lake-illustration.svg",
-    "/images/lake-illustration.svg",
-    "/images/lake-illustration.svg",
+    "/images/gregory-lake-park.webp",
+    "/images/gregory-lake-mist.webp",
+    "/images/gregory-lake-garden.webp",
   ],
   openingHours: "Confirm with the entrance staff",
   elevationMetres: 1868,
