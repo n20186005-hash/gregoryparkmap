@@ -1,0 +1,17 @@
+---
+import { navigation } from '../data/navigation';
+
+interface Props {
+  /** '' on the guide itself, '/' on second-level pages. */
+  linkPrefix?: string;
+}
+
+const { linkPrefix = '' } = Astro.props;
+---
+<header class="site-header">
+  <div class="header-bar">
+    <a class="brand" href={`${linkPrefix}#top`} aria-label="Gregory Park මුල් පිටුව"><img src="/logo.svg" alt="Gregory Park Guide" width="200" height="58" /></a>
+    <a class="header-cta" href={`${linkPrefix}#map`}>සිතියම · Map ↗</a>
+  </div>
+  <nav class="navigation" aria-label="ප්‍රධාන මෙනුව">{navigation.map(([label, href]) => <a href={`${linkPrefix}${href}`}>{label}</a>)}</nav>
+</header>

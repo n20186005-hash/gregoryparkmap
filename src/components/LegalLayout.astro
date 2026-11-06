@@ -1,0 +1,41 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from './SiteHeader.astro';
+import SiteFooter from './SiteFooter.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  heading: string;
+  updated: string;
+  canonicalPath: string;
+  /** Sinhala summary, then the English summary. */
+  introSi: string;
+  introEn: string;
+}
+
+const { title, description, heading, updated, canonicalPath, introSi, introEn } = Astro.props;
+---
+<Layout title={title} description={description} ogTitle={title} ogDescription={description} canonicalPath={canonicalPath} entitySchema={false}>
+  <SiteHeader linkPrefix="/" />
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="/">Gregory Park</a></li>
+      <li lang="en">{heading}</li>
+    </ol>
+  </nav>
+  <main class="section-pad legal-page">
+    <article class="legal-doc">
+      <p class="legal-kicker">නීතිමය තොරතුරු <span lang="en">· Legal information</span></p>
+      <h1 lang="en">{heading}</h1>
+      <p class="legal-updated">අවසන් යාවත්කාලීන කිරීම <span lang="en">· Last updated: {updated}</span></p>
+      <p class="legal-lead">{introSi}</p>
+      <p class="legal-lead" lang="en">{introEn}</p>
+      <div class="legal-body" lang="en">
+        <slot />
+      </div>
+      <p class="legal-back"><a href="/">← මුල් පිටුවට · Back to the guide</a></p>
+    </article>
+  </main>
+  <SiteFooter linkPrefix="/" />
+</Layout>

@@ -5,13 +5,27 @@ import { attraction, faqs, faqsEn, meta, siteName, siteUrl } from '../data/attra
 interface Props {
   title?: string;
   description?: string;
- noindex?: boolean;
+  noindex?: boolean;
+  ogTitle?: string;
+  ogDescription?: string;
+  /** Fixed canonical path for second-level pages; defaults to the requested path. */
+  canonicalPath?: string;
+  /** Suppress attraction / FAQ / breadcrumb schema on non-guide pages. */
+  entitySchema?: boolean;
 }
 
-const { title = meta.title, description = meta.description, noindex = false } = Astro.props;
+const {
+  title = meta.title,
+  description = meta.description,
+  noindex = false,
+  ogTitle = meta.ogTitle,
+  ogDescription = meta.ogDescription,
+  canonicalPath,
+  entitySchema = true,
+} = Astro.props;
 
 const base = Astro.site ?? new URL(siteUrl);
-const canonical = new URL(Astro.url.pathname, base).toString();
+const canonical = new URL(canonicalPath ?? Astro.url.pathname, base).toString();
 const siteBase = new URL('/', base).toString().replace(/\/$/, '');
 const imageUrl = new URL('/images/lake-social.png', base).toString();
 
@@ -128,24 +142,24 @@ const faqSchema = {
     <!-- Open Graph / social -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={siteName} />
-    <meta property="og:title" content={meta.ogTitle} />
-    <meta property="og:description" content={meta.ogDescription} />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={ogDescription} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={imageUrl} />
     <meta property="og:image:alt" content={meta.ogImageAlt} />
     <meta property="og:locale" content="si_LK" />
     <meta property="og:locale:alternate" content="en_US" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={meta.ogTitle} />
-    <meta name="twitter:description" content={meta.ogDescription} />
+    <meta name="twitter:title" content={ogTitle} />
+    <meta name="twitter:description" content={ogDescription} />
     <meta name="twitter:image" content={imageUrl} />
     <meta name="twitter:image:alt" content={meta.ogImageAlt} />
     <script type="application/ld+json" set:html={JSON.stringify({"@context":"https://schema.org","@type":"WebPage","@id":canonical+"#webpage",url:canonical,name:title,inLanguage:["si-LK","en"]})} />
 
-    {!noindex && <script type="application/ld+json" set:html={JSON.stringify(attractionSchema)} />}
+    {!noindex && entitySchema && <script type="application/ld+json" set:html={JSON.stringify(attractionSchema)} />}
     <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
-    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
-    {!noindex && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
+    {entitySchema && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />}
+    {!noindex && entitySchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-HXM22WWPKP" />
     <script is:inline set:html={`window.dataLayer = window.dataLayer || [];

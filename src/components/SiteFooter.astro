@@ -1,0 +1,23 @@
+---
+interface Props {
+  /** '' on the guide itself, '/' on second-level pages. */
+  linkPrefix?: string;
+}
+
+const { linkPrefix = '' } = Astro.props;
+---
+<footer class="site-footer">
+  <div class="footer-brand"><img src="/logo.svg" alt="Gregory Park Guide" width="200" height="58"/></div>
+  <div class="footer-links">
+    <a href={`${linkPrefix}#top`}>ඉහළට ↑</a>
+    <a href={`${linkPrefix}#sources`}>Sources</a>
+    <a href={`${linkPrefix}#image-credits`}>Images</a>
+    <a href="/privacy-policy">Privacy Policy</a>
+    <a href="/terms-of-service">Terms of Service</a>
+    <a href="/cookie-settings">Cookie Settings</a>
+  </div>
+  <div class="footer-note">
+    <p>ස්වාධීන, ලාභ නොලබන සංචාරක හා විද්‍යාත්මක තොරතුරු මාර්ගෝපදේශයකි; නිල උද්‍යාන හෝ රජයේ වෙබ් අඩවියක් නොවේ.</p>
+    <p lang="en">Independent nonprofit tourism and educational guide. No affiliation with park management, the municipal council or Google. Confirm current hours, fees and access before travel. © 2026 gregoryparkmap.com</p>
+  </div>
+</footer>
