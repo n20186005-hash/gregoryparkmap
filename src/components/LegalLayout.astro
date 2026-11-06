@@ -9,12 +9,13 @@ interface Props {
   heading: string;
   updated: string;
   canonicalPath: string;
-  /** Sinhala summary, then the English summary. */
+  /** Sinhala summary (one or two paragraphs), then the English summary. */
   introSi: string;
+  introSiExtra?: string;
   introEn: string;
 }
 
-const { title, description, heading, updated, canonicalPath, introSi, introEn } = Astro.props;
+const { title, description, heading, updated, canonicalPath, introSi, introSiExtra, introEn } = Astro.props;
 ---
 <Layout title={title} description={description} ogTitle={title} ogDescription={description} canonicalPath={canonicalPath} entitySchema={false}>
   <SiteHeader linkPrefix="/" />
@@ -30,6 +31,7 @@ const { title, description, heading, updated, canonicalPath, introSi, introEn } 
       <h1 lang="en">{heading}</h1>
       <p class="legal-updated">අවසන් යාවත්කාලීන කිරීම <span lang="en">· Last updated: {updated}</span></p>
       <p class="legal-lead">{introSi}</p>
+      {introSiExtra && <p class="legal-lead">{introSiExtra}</p>}
       <p class="legal-lead" lang="en">{introEn}</p>
       <div class="legal-body" lang="en">
         <slot />

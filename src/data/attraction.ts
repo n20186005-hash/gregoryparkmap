@@ -52,7 +52,7 @@ export const attraction = {
     "https://tourism.cp.gov.lk/en/tour-itinerary/ceylon-tea-trail",
   govtTourismLabel: "Central Province Tourism Department — Ceylon Tea Trail",
   /** Visible credit for the photos used on the page (Wikimedia Commons). */
-  imageCreditUrl: "/#image-credits",
+  imageCreditUrl: "/sources#image-credits",
   /** {{NEARBY_LANDMARK_1}} / {{NEARBY_LANDMARK_2}} */
   nearbyLandmark1: "Lake Gregory",
   nearbyLandmark2: "Victoria Park",

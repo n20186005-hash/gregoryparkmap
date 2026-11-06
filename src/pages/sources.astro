@@ -1,0 +1,39 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { sources } from '../data/sources';
+
+const pageTitle = 'Sources & Image Credits | Gregory Park Nuwara Eliya';
+const pageDescription =
+  'The primary sources behind this independent Gregory Park guide, the limits of each source, and the image credit record.';
+---
+<Layout title={pageTitle} description={pageDescription} ogTitle={pageTitle} ogDescription={pageDescription} canonicalPath="/sources" entitySchema={false}>
+  <SiteHeader linkPrefix="/" />
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="/">Gregory Park</a></li>
+      <li lang="en">Sources</li>
+    </ol>
+  </nav>
+  <main>
+    <section class="sources-section section-pad" id="sources">
+      <div class="section-kicker section-kicker-light"><span>12</span><span>මූලාශ්‍ර · Sources</span></div>
+      <div class="sources-grid">
+        <div>
+          <h1>තොරතුරු<br/><em>සහ සීමාවන්.</em></h1>
+          <p lang="en">Sources and limitations. This is the full source record that accompanies the guide.</p>
+          <p>මෙම මාර්ගෝපදේශයේ සත්‍යාපන දිනය 2026-10-29 වේ. ප්‍රකාශිත පැරණි ලේඛනයක් වත්මන් මෙහෙයුම් තත්ත්වයක් ලෙස නොසලකන්න.</p>
+          <p lang="en">Sources reviewed on 29 October 2026. Historical documents and third-party snapshots have the limited scope described beside each link. Current management hours, fees and operating activities remain unverified.</p>
+        </div>
+        <ul class="source-list" lang="en">{sources.map(([title, href, text]) => <li><h3>{title}</h3><p>{text}</p><a href={href} target="_blank" rel="noopener noreferrer">Original source ↗</a></li>)}</ul>
+      </div>
+      <article id="image-credits">
+        <h3>රූප · Image credits</h3>
+        <p lang="en">The lake-and-hills SVG and derived social PNG are original geometric illustrations created for this guide and released under <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener noreferrer">CC0 1.0</a>. They are not photographs or navigation maps. Five previously published WebP lake photographs were restored from the site's September 2026 Git history; original photographers and source records remain unconfirmed.</p>
+        <a href="/IMAGE-CREDITS.txt">Image history and illustration record</a>
+      </article>
+    </section>
+  </main>
+  <SiteFooter linkPrefix="/" />
+</Layout>

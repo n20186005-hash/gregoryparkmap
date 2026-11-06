@@ -1,4 +1,4 @@
-/** Shared anchor navigation for the guide; subpages prefix these with `/`. */
+/** Shared navigation: in-page anchors are prefixed with `/` on subpages; absolute paths stay unchanged. */
 export const navigation = [
   ['ස්ථානය · Place', '#story'],
   ['වේලාව / ගාස්තු', '#plan'],
@@ -6,5 +6,5 @@ export const navigation = [
   ['පැමිණීම', '#transport'],
   ['සිතියම', '#map'],
   ['FAQ', '#faq'],
-  ['මූලාශ්‍ර', '#sources'],
+  ['මූලාශ්‍ර', '/sources'],
 ] as const;

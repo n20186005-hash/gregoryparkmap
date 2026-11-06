@@ -7,11 +7,12 @@ interface Props {
 }
 
 const { linkPrefix = '' } = Astro.props;
+const links = navigation.map(([label, href]) => [label, href.startsWith('/') ? href : `${linkPrefix}${href}`] as const);
 ---
 <header class="site-header">
   <div class="header-bar">
     <a class="brand" href={`${linkPrefix}#top`} aria-label="Gregory Park මුල් පිටුව"><img src="/logo.svg" alt="Gregory Park Guide" width="200" height="58" /></a>
     <a class="header-cta" href={`${linkPrefix}#map`}>සිතියම · Map ↗</a>
   </div>
-  <nav class="navigation" aria-label="ප්‍රධාන මෙනුව">{navigation.map(([label, href]) => <a href={`${linkPrefix}${href}`}>{label}</a>)}</nav>
+  <nav class="navigation" aria-label="ප්‍රධාන මෙනුව">{links.map(([label, href]) => <a href={href}>{label}</a>)}</nav>
 </header>
